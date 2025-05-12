@@ -11,10 +11,11 @@ export default function CustomButton({onPress, buttonText, type='PRIMARY', bgCol
 
 const styles = StyleSheet.create({
     container: { 
-        width: '100%',
+        // width: '100%',
         padding: 15,
         marginVertical: 5,
         borderRadius: 5,
+        margin: 12,
     },
     text: {
         fontWeight: 'bold',

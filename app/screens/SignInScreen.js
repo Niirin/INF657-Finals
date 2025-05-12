@@ -1,9 +1,9 @@
 import { StyleSheet, View, useWindowDimensions } from 'react-native'
 import React, {useState} from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { UserAuth } from '../../context/AuthContext';
-import CustomButton from '../shared/CustomButton';
-import CustomInput from '../shared/CustomInput';
+import { UserAuth } from '../context/AuthContext';
+import CustomButton from '../components/shared/CustomButton';
+import CustomInput from '../components/shared/CustomInput';
 
 export default function SignInScreen() {
     // Usestates for signing in

@@ -1,20 +1,20 @@
 import { SafeAreaView, StyleSheet  } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './app/navigation/Navigation';
-import { AuthContextProvider } from "./app/context/AuthContext";
+// import { AuthContextProvider } from "./app/context/AuthContext";
 import { PaperProvider } from "react-native-paper";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.root}>
-      <AuthContextProvider>
+      // <AuthContextProvider>
         <NavigationContainer>
           <PaperProvider>
-            <Navigation />
+            <SafeAreaView style={styles.root}>
+              <Navigation />
+            </SafeAreaView>
           </PaperProvider>
         </NavigationContainer>
-      </AuthContextProvider>
-    </SafeAreaView>
+      // </AuthContextProvider>
   );
 }
 

@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
-import Header from '../shared/Header'
-import MyCard from '../shared/Card'
+import Header from '../components/shared/Header'
+import MyCard from '../components/shared/Card'
 import { Chip, FAB } from 'react-native-paper';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 

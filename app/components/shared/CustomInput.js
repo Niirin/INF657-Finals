@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
         height: 60,
         margin: 12,
         borderWidth: 1,
-        width: '100%',
+        // width: '100%',
         padding: 20,
-        borderColor: '#ffe4b5',
+        borderColor: '#9370DB',
         borderBottomColor: 'black' 
     }
 })
