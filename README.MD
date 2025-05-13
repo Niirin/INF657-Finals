@@ -42,7 +42,7 @@ npm start
 
 ### Video Walkthrough
 
-[Guide]!
+![Demo](assets/demo.gif)
 
 ## Modules
 Modules used in the Front-end typing game:
