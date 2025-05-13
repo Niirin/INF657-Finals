@@ -16,11 +16,11 @@ Submitted by: **Nilin Lay**
 
 The following functionality is (to be) implemented:
 
-- [] Allow user(s) to view a list of transactions
-- [] Allow user(s) to sign in using email and password
-- [] Allow user(s) to sign up and create an account
-- [] Allow user(s) to view their monthly income, expenses, and balance in a visually appealing graphs
-- [] Allow user(s) to edit and delete a transaction
+- [x] Allow user(s) to view a list of transactions
+- [x] Allow user(s) to sign in using email and password
+- [x] Allow user(s) to sign up and create an account
+- [x] Allow user(s) to view their monthly income, expenses, and balance in a visually appealing graphs
+- [x] Allow user(s) to edit and delete a transaction
 - [] Allow user(s) to search past transaction
 
 The following **additional** features are implemented:
@@ -30,9 +30,14 @@ The following **additional** features are implemented:
 ## Usage
 In the case of cloning the repository:
 - clone the project 
+- install the necessary packages and expo config
 - run 
 ``` bash
 npm i
+```
+
+``` bash
+npm start
 ```
 
 ### Video Walkthrough
@@ -52,8 +57,11 @@ This project's main contributor is Nilin Lay and in consultation with the Nodejs
 ## Notes
 
 Challenges encountered while building the app: 
-- xxxxx
-- xxxxx
+- Versions of Expo Go and package support for various components
+- Dynamic state management
+- Firebase data structuring and database management
+- Firebase config with expo go as need to change metro config  for the auth component to be recognized
+- Dynamic Pie Chart Generation
 
 ## License
 

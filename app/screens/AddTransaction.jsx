@@ -1,35 +1,18 @@
 import { Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import CustomButton from '../components/shared/CustomButton';
 import CustomInput from '../components/shared/CustomInput';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Button} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import Select from 'react-native-picker-select';
+import TransactionContext from '../context/TransactionContext';
+import { expenseCategories, incomeCategories } from '../data/categories';
 
 export default function AddTransaction() {
   const navigation = useNavigation();
-  const expenseCategories = [
-    { label: 'Food&Dining', value: 'food' },
-    { label: 'Transportation', value: 'transportation' },
-    { label: 'Housing/Rent', value: 'housing' },
-    { label: 'Health', value: 'health' },
-    { label: 'Shopping', value: 'shopping' },
-    { label: 'Entertainment', value: 'entertainment' },
-    { label: 'Education', value: 'education' },
-    { label: 'Gifts', value: 'gifts' },
-    { label: 'Miscellaneous', value: 'miscellaneous' },
-    { label: 'Self-care', value: 'self-care' },
-  ];
-
-  const incomeCategories = [
-    { label: 'Salary', value: 'salary' },
-    { label: 'Business', value: 'business' },
-    { label: 'Investment', value: 'investment' },
-    { label: 'Freelance', value: 'freelance' },
-    { label: 'Part-time', value: 'part-time' },
-    { label: 'Gifts', value: 'gifts' }
-  ]
+  
+  const {addTransaction} = useContext(TransactionContext);
 
   //states
   const [amount, setAmount] = useState('');
@@ -41,7 +24,13 @@ export default function AddTransaction() {
 
   const handleGoBack= () => {
     console.log('Back or Cancel pressed');
-    navigation.navigate("Home");
+    setTitle('');
+    setAmount('');
+    setType('');
+    setCategory(null);
+    setDate(null);
+    setDatePickerVisible(false);
+    navigation.goBack();
   }
 
     //functions for date picker
@@ -61,16 +50,25 @@ export default function AddTransaction() {
   const handleSubmit= () => {
     console.log("Submit button pressed");
 
-    if (amount && title && type && category && date ) {
+    if (title && amount && type && category && selectedDate ) {
       const transaction = {
-          amount, title, type, category, date : selectedDate.toString(),
+        title,
+        amount: parseFloat(amount), 
+        type, 
+        category, 
+        date: selectedDate.toString(),
       };
+      addTransaction(transaction);
       console.log(transaction);
+
+      //reset inputs and states
       setTitle('');
       setAmount('');
       setType('');
       setCategory(null);
-      setDate(null);
+      setDate(new Date());
+      setDatePickerVisible(false);
+      navigation.navigate("List");
     }
     else {
         alert("Please enter all the fields");
@@ -80,16 +78,6 @@ export default function AddTransaction() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.viewCont} >
-        <Button icon="arrow-left" 
-        mode="text" 
-        onPress={handleGoBack} 
-        style={styles.backButton}
-        contentStyle={styles.backButtonContent}
-        labelStyle={styles.backButtonLabel}
-        >
-          Back
-        </Button>
-
         <Text style={styles.title}>Add a New Transaction</Text>
         <CustomInput placeholder='Enter Amount' value={amount} setValue={setAmount}/>
         <CustomInput placeholder='Enter Title' value={title} setValue={setTitle}/>
@@ -132,7 +120,8 @@ export default function AddTransaction() {
         mode='date'
         onChange={onChange}
         />)}
-        {selectedDate && (
+
+        {(isDatePickerVisible && selectedDate) && (
         <CustomInput placeholder='Date selected: ' 
           value={new Date(selectedDate).toLocaleDateString('en-US', {
           month: '2-digit',
@@ -145,7 +134,7 @@ export default function AddTransaction() {
         )}
 
         <CustomButton buttonText="Submit" onPress={handleSubmit}/>
-        <CustomButton buttonText="Cancel" onPress={handleGoBack} bgColor='white' textColor='#000'/>
+        <CustomButton buttonText="Cancel" onPress={handleGoBack} bgColor={"white"} textColor={'black'}/>
       </View>
     </SafeAreaView>
   )
@@ -156,7 +145,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   viewCont: {
-    paddingTop: 40,
+    paddingTop: 30,
   },  
   backButton: {
     alignSelf: 'flex-start', // Ensures button hugs the left
@@ -211,6 +200,5 @@ const styles = StyleSheet.create({
   disabledInput: {
   backgroundColor: 'gray',
   color: 'gray',
-}
-  
+}  
 })

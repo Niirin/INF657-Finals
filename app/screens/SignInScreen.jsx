@@ -1,4 +1,4 @@
-import { StyleSheet, View, useWindowDimensions } from 'react-native'
+import { StyleSheet, View, useWindowDimensions, Text } from 'react-native'
 import React, {useState} from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { UserAuth } from '../context/AuthContext';
@@ -50,6 +50,8 @@ export default function SignInScreen() {
     }
   return (
     <View>
+        <Text style={styles.title}>Welcome to Purple Finance!</Text>
+        <Text style={styles.title}>Sign In</Text>
         <CustomInput placeholder='Email' value={email} setValue={setEmail} />
         <CustomInput placeholder='Password' value={password} setValue={setPassword} secureTextEntry={true}/>
         <CustomButton onPress={onSignIn} buttonText={'Sign In'} />
@@ -61,4 +63,12 @@ export default function SignInScreen() {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: '#483d8b',
+        margin: 12,
+        marginTop: 30,
+    }
+})
